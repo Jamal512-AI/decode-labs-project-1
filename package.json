@@ -1,0 +1,8 @@
+{
+  "name": "rule-based-chatbot",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "serve ."
+  }
+}

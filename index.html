@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DecodeLabs Logic Engine | White-Box AI Chatbot</title>
+  <meta name="description" content="A deterministic, rules-based AI chatbot built on the DecodeLabs Logic Engine specification. Zero hallucination, 100% traceable decisions via the IPO model." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Background Grid -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <span class="logo-text">DecodeLabs</span>
+        <span class="logo-badge">Logic Engine</span>
+      </div>
+      <div class="header-status">
+        <div class="status-dot"></div>
+        <span>White-Box AI · Batch 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <main class="main-layout">
+
+    <!-- Sidebar: Architecture Panel -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          IPO Pipeline
+        </h3>
+        <div class="ipo-pipeline">
+          <div class="ipo-step" id="ipo-input">
+            <div class="ipo-icon">I</div>
+            <div class="ipo-info">
+              <span class="ipo-label">Input</span>
+              <span class="ipo-desc">Sanitize & Normalize</span>
+            </div>
+          </div>
+          <div class="ipo-arrow">↓</div>
+          <div class="ipo-step" id="ipo-process">
+            <div class="ipo-icon">P</div>
+            <div class="ipo-info">
+              <span class="ipo-label">Process</span>
+              <span class="ipo-desc">Intent Match O(1)</span>
+            </div>
+          </div>
+          <div class="ipo-arrow">↓</div>
+          <div class="ipo-step" id="ipo-output">
+            <div class="ipo-icon">O</div>
+            <div class="ipo-info">
+              <span class="ipo-label">Output</span>
+              <span class="ipo-desc">Response Generation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+          Knowledge Base
+        </h3>
+        <div class="kb-stats">
+          <div class="kb-stat">
+            <span class="kb-num" id="kb-count">30</span>
+            <span class="kb-label">Rules</span>
+          </div>
+          <div class="kb-stat">
+            <span class="kb-num" id="session-count">0</span>
+            <span class="kb-label">Queries</span>
+          </div>
+          <div class="kb-stat">
+            <span class="kb-num" id="match-rate">—</span>
+            <span class="kb-label">Hit Rate</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          System Mode
+        </h3>
+        <div class="mode-chips">
+          <div class="mode-chip active" id="chip-whitebox">White-Box</div>
+          <div class="mode-chip" id="chip-deterministic">Deterministic</div>
+          <div class="mode-chip" id="chip-zerohall">Zero Hallucination</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Try Asking
+        </h3>
+        <div class="suggestions-list">
+          <button class="suggestion-btn" onclick="injectSuggestion('hello')">hello</button>
+          <button class="suggestion-btn" onclick="injectSuggestion('what is white-box ai?')">what is white-box ai?</button>
+          <button class="suggestion-btn" onclick="injectSuggestion('what is the ipo model?')">what is the ipo model?</button>
+          <button class="suggestion-btn" onclick="injectSuggestion('what is a hallucination?')">what is a hallucination?</button>
+          <button class="suggestion-btn" onclick="injectSuggestion('what is intent matching?')">what is intent matching?</button>
+          <button class="suggestion-btn" onclick="injectSuggestion('what are ai guardrails?')">what are ai guardrails?</button>
+          <button class="suggestion-btn" onclick="injectSuggestion('help')">help</button>
+          <button class="suggestion-btn" onclick="injectSuggestion('what topics can you help with?')">what topics can you help with?</button>
+        </div>
+      </div>
+
+      <button class="clear-btn" id="clear-btn" onclick="clearChat()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        Clear Conversation
+      </button>
+    </aside>
+
+    <!-- Chat Area -->
+    <section class="chat-area">
+
+      <!-- Chat Header -->
+      <div class="chat-header">
+        <div class="chat-header-left">
+          <div class="bot-avatar-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>
+          </div>
+          <div>
+            <div class="chat-bot-name">Logic Engine v1.0</div>
+            <div class="chat-bot-sub">Deterministic · Rules-Based · IPO Model</div>
+          </div>
+        </div>
+        <div class="last-trace" id="last-trace">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Awaiting input...
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div class="messages-container" id="messages-container">
+        <!-- Welcome message injected by JS -->
+      </div>
+
+      <!-- Trace Bar -->
+      <div class="trace-bar" id="trace-bar">
+        <div class="trace-item" id="trace-sanitize">
+          <span class="trace-label">Sanitized Input:</span>
+          <code class="trace-value" id="trace-sanitize-val">—</code>
+        </div>
+        <div class="trace-divider">|</div>
+        <div class="trace-item" id="trace-match">
+          <span class="trace-label">Match Type:</span>
+          <code class="trace-value" id="trace-match-val">—</code>
+        </div>
+        <div class="trace-divider">|</div>
+        <div class="trace-item" id="trace-key">
+          <span class="trace-label">Key Hit:</span>
+          <code class="trace-value" id="trace-key-val">—</code>
+        </div>
+        <div class="trace-divider">|</div>
+        <div class="trace-item" id="trace-latency">
+          <span class="trace-label">Latency:</span>
+          <code class="trace-value" id="trace-latency-val">—</code>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="input-area">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="user-input"
+            class="chat-input"
+            placeholder="Type a message... (type 'exit' to end session)"
+            autocomplete="off"
+            autofocus
+          />
+          <button class="send-btn" id="send-btn" onclick="handleSend()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+        <div class="input-hint">Press <kbd>Enter</kbd> to send · Type <kbd>exit</kbd> to end session · <kbd>help</kbd> for topics</div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Session Ended Overlay -->
+  <div class="session-overlay hidden" id="session-overlay">
+    <div class="session-card">
+      <div class="session-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <h2>Session Terminated</h2>
+      <p>The kill command was received. The logic engine has been gracefully shut down. All state has been cleared from the active loop.</p>
+      <div class="session-stats" id="session-final-stats"></div>
+      <button class="restart-btn" onclick="restartSession()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg>
+        Start New Session
+      </button>
+    </div>
+  </div>
+
+  <script src="engine.js"></script>
+</body>
+</html>
