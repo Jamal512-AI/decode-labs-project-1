@@ -21,5 +21,7 @@ Frontend: HTML5 & Advanced CSS featuring a "Cyberpunk" inspired UI with Glassmor
 
 Architecture: State-machine based session management with a graceful "Kill Command" shutdown.
 
+Live Link: https://rule-based-chatbot-flax.vercel.app/
+
 📖 What I Learned
 Building this engine from scratch reinforced the importance of deterministic logic in AI development. It proved that in many professional applications, knowing why a system gave an answer is just as important as the answer itself.
